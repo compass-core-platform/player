@@ -111,6 +111,7 @@ export class MainPlayerComponent implements OnInit, OnChanges {
         this.playerConfig.metadata = this.transformationService.getTransformedHierarchy(this.playerConfig.metadata)
       }
       console.log('playerConfig::', this.playerConfig);
+      this.viewerService.parseChildren(this.playerConfig.metadata);
       this.isLoading = true;
       this.setConfig();
       this.initializeSections();

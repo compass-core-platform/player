@@ -39,6 +39,7 @@
     "lodash-es": "^4.17.21",
     "ngx-bootstrap": "^10.0.0",
     "rxjs": "~6.6.7",
+    "tree-model": "^1.0.7",
     "tslib": "^2.0.0",
     "uuid": "^3.4.0",
     "zone.js": "~0.11.4"

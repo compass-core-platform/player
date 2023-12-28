@@ -7,6 +7,7 @@ import { eventName, TelemetryType } from '../../telemetry-constants';
 import { QuestionCursor } from '../../quml-question-cursor.service';
 import * as _ from 'lodash-es';
 import { forkJoin } from 'rxjs';
+import TreeModel from 'tree-model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,7 @@ export class ViewerService {
   parentIdentifier: string;
   sectionQuestions = [];
   questionSetEvaluable: any;
+  totalMaxScore = 0;
 
   constructor(
     public qumlLibraryService: QumlLibraryService,
@@ -163,7 +165,8 @@ export class ViewerService {
         item: questionData,
         index: index,
         resvalues: resValues,
-        duration: duration
+        duration: duration,
+        totalMaxScore: this.totalMaxScore
       }
     }
     this.qumlPlayerEvent.emit(assessEvent);
@@ -323,5 +326,16 @@ export class ViewerService {
       this.questionSetEvaluable = false;
       return this.questionSetEvaluable
     }
+  }
+
+  parseChildren(courseHierarchy) {
+    const model = new TreeModel();
+    const treeModel: any = model.parse(courseHierarchy);
+    treeModel.walk((node) => {
+      if(node.model?.maxScore) {
+        this.totalMaxScore = this.totalMaxScore + node.model.maxScore;
+      }
+    });
+    console.log("totalScore", this.totalMaxScore);
   }
 }
