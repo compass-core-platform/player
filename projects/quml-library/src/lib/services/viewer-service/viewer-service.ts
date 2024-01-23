@@ -36,7 +36,7 @@ export class ViewerService {
   questionSetId: string;
   parentIdentifier: string;
   sectionQuestions = [];
-  questionSetEvaluable: any;
+  questionSetEvaluable: boolean = false;
   totalMaxScore = 0;
 
   constructor(
@@ -60,7 +60,6 @@ export class ViewerService {
     this.isSectionsAvailable = parentConfig?.isSectionsAvailable;
     this.src = config.metadata.artifactUrl || '';
     this.questionSetId = config.metadata.identifier;
-    this.questionSetEvaluable = this.serverValidationCheck(config.metadata?.evalMode);
 
     /* istanbul ignore else */
     if (config?.context?.userData) {
@@ -321,14 +320,13 @@ export class ViewerService {
   serverValidationCheck(mode: any) {
     if(mode == 'server') {
       this.questionSetEvaluable = true;
-      return this.questionSetEvaluable;
     } else {
       this.questionSetEvaluable = false;
-      return this.questionSetEvaluable
     }
   }
 
   parseChildren(courseHierarchy) {
+    this.totalMaxScore = 0;
     const model = new TreeModel();
     const treeModel: any = model.parse(courseHierarchy);
     treeModel.walk((node) => {

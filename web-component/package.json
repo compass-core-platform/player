@@ -1,6 +1,6 @@
 {
     "name": "compass-quml-player-web-component",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "The web component package for the sunbird QuML player",
     "main": "sunbird-quml-player.js",
     "scripts": {
