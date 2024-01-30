@@ -15,3 +15,6 @@
 .endPage-container-height {
   height: 100%;
 }
+::ng-deep .hideReply .replay-section {
+  display: none;
+}

@@ -30,7 +30,7 @@
     <sb-player-end-page *ngIf="endPageReached && showEndPage" [contentName]="parentConfig.contentName"
     [outcome]="!questionSetEvaluable? outcomeLabel : ''" [outcomeLabel]="!questionSetEvaluable? 'Score: ': ''" [userName]="userName" [timeSpentLabel]="durationSpent"
       (replayContent)="replayContent()" (exitContent)="exitContent($event)"
-      [showExit]="parentConfig?.sideMenuConfig.showExit" [showReplay]="showReplay" [nextContent]="nextContent"
+      [showExit]="parentConfig?.sideMenuConfig.showExit" [showReplay]="!questionSetEvaluable" [nextContent]="nextContent" [ngClass]="questionSetEvaluable ? 'hideReply' : ''"
       (playNextContent)="playNextContent($event)">
 
       <span *ngIf="questionSetEvaluable" class="mt-8 font-weight-bold d-block">You've succesfully submitted the assessment and response sent for validation</span>
